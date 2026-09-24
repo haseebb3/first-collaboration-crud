@@ -13,4 +13,7 @@ const baseUrl = "https://posts-crud-c2796-default-rtdb.firebaseio.com";
 const studentsUrl = `${baseUrl}/students.json`;
 
 
-
+function onDelete(ele){
+    const deleteId = ele.closest("tr").id;
+    console.log(deleteId);
+}
