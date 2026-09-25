@@ -18,6 +18,50 @@ const studentsUrl = `${baseUrl}/students.json`;
 
 let studentArr=[];
 
+
+//read
+function onShowUi(){
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", studentsUrl);
+    xhr.send(null);
+    xhr.onload = function(){
+        if(xhr.status >= 200 && xhr.status <= 299){
+            let res = JSON.parse(xhr.response);
+            cl(res)
+            for(const key in res){
+                res[key].id = key;
+                studentArr.unshift(res[key])
+            }
+            cl(studentArr)
+            onTampleting(studentArr)
+        }else{
+            cl("error")
+        }
+    }
+}
+
+onShowUi()
+
+
+//templeting
+function onTampleting(arr){
+    let result = "";
+    arr.forEach((ele, i)=> {
+        result += `
+                      <tr id=${ele.id}>
+                      <td>${i + 1}</td>
+                      <td>${ele.fname}</td>
+                      <td>${ele.lname}</td>
+                      <td>${ele.email}</td>
+                      <td>${ele.contact}</td>
+                      <td><button onclick="onEdit(this)" class="btn btn-outline-info btn-sm">Edit</button></td>
+                      <td><button onclick="onDelete(this)" class="btn btn-outline-danger btn-sm">Delete</button></td>
+                    </tr>
+        `
+    })
+    studentsContainer.innerHTML = result;
+}
+
 function hideSpinner(){
     spinner.classList.add("d-none")
 
