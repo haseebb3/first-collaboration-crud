@@ -19,7 +19,7 @@ function onDelete(ele){
 
 function onEdit(ele){
     let EDIT_ID = ele.closest('tr').id;
-    let EDIT_URL = `${baseUrl}/studentsUrl/${EDIT_ID}.json`
+    let EDIT_URL = `${baseUrl}/students/${EDIT_ID}.json`
     localStorage.setItem('EDIT_ID', EDIT_ID)
     let xhr = new XMLHttpRequest();
     xhr.open("GET", EDIT_URL)
@@ -44,7 +44,7 @@ function onEdit(ele){
 
 function onUpdate(){
     let update_Id = localStorage.getItem('EDIT_ID')
-    let UPDATE_URL = `${baseUrl}/studentsUrl/${update_Id}.json`;
+    let UPDATE_URL = `${baseUrl}/students/${update_Id}.json`;
 
     let updateObj={
         fname : fname.value,
