@@ -21,8 +21,8 @@ function onEdit(ele){
     let EDIT_ID = ele.closest('tr').id;
     let EDIT_URL = `${baseUrl}/studentsUrl/${EDIT_ID}.json`
     localStorage.setItem('EDIT_ID', EDIT_ID)
-    let xhr = new XMLHttpRequest()
-    xhr.open('GET', EDIT_URL)
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", EDIT_URL)
     xhr.send(null)
     xhr.onload = function(){
         if(xhr.status >= 200 && xhr.status <= 299){
@@ -35,13 +35,8 @@ function onEdit(ele){
             addStudentBtn.classList.add('d-none')
             updateStudentBtn.classList.remove('d-none')
 
-        }else{
-            cl("ERROR")
         }
        
-    }
-    xhr.onerror = function(){
-       cl(error)
     }
 }
 
@@ -49,7 +44,7 @@ function onEdit(ele){
 
 function onUpdate(){
     let update_Id = localStorage.getItem('EDIT_ID')
-    let UPDATE_URL = `${baseUrl}/studentsUrl/${update_Id}.json`
+    let UPDATE_URL = `${baseUrl}/studentsUrl/${update_Id}.json`;
 
     let updateObj={
         fname : fname.value,
@@ -58,7 +53,7 @@ function onUpdate(){
         contact:contact.value,
         id:update_Id
     };
-    let xhr = XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open("PATCH", UPDATE_URL);
 
     xhr.send(JSON.stringify(updateObj));
