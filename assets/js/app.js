@@ -15,6 +15,7 @@ const baseUrl = "https://posts-crud-c2796-default-rtdb.firebaseio.com";
 const studentsUrl = `${baseUrl}/students.json`;
 
 
+
 let studentArr=[];
 
 function hideSpinner(){
@@ -85,7 +86,39 @@ studentForm.addEventListener("submit",OnCreatestd)
 
 
 
-function onDelete(ele){
+function onDelete(ele) {
     const deleteId = ele.closest("tr").id;
-    console.log(deleteId);
+    const deleteUrl = `${baseUrl}/students/${deleteId}.json`;
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You want to delete this student?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("DELETE", deleteUrl);
+            xhr.send(null);
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status <= 299) {
+                    ele.closest("tr").remove();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } else {
+                    console.log("Error while deleting studenet", xhr.status);
+                }
+            }
+
+            xhr.onerror = () => {
+                console.log("Network Error...");
+            }
+
+        }
+    });
 }
