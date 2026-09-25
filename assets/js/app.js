@@ -7,7 +7,7 @@ const addStudentBtn = document.getElementById("addStudentBtn");
 const updateStudentBtn = document.getElementById("updateStudentBtn");
 const studentsContainer = document.getElementById("studentsContainer");
 const spinner = document.getElementById("spinner");
-
+const cl  = console.log;
 
 
 
