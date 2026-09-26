@@ -100,6 +100,8 @@ function OnCreatestd(eve){
                       <td><button onclick="onDelete(this)" class="btn btn-outline-danger btn-sm">Delete</button></td>`
                             studentsContainer.prepend(tr);
                             studentForm.reset();
+                            let tds = document.querySelectorAll("#deleteId td:first-child");
+                    tds.forEach((td, idx) => td.innerHTML = idx + 1);
 
                             let td=[...document.querySelectorAll("#studentsContainer tr td:first-child")];
                              td.forEach((td,i) => {
