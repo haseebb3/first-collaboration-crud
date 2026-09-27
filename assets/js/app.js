@@ -150,11 +150,11 @@ function onDelete(ele) {
             xhr.onload = () => {
                 if (xhr.status >= 200 && xhr.status <= 299) {
                     ele.closest("tr").remove();
-                    let tds = document.querySelectorAll("#deleteId td:first-child");
+                    let tds = document.querySelectorAll("#studentsContainer tr td:first-child");
                     tds.forEach((td, idx) => td.innerHTML = idx + 1);
                     Swal.fire({
                         title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        text: "Your student has been deleted.",
                         icon: "success"
                     });
                 } else {
